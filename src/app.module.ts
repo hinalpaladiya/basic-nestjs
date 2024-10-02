@@ -12,8 +12,10 @@ import { ProductModule } from './product/product.module';
       username: 'root',
       password: '',
       database: 'nestjs',
-      entities: [],
+      // entities: [],
+      entities: [__dirname + '/**/*.entity{.ts,.js}'], // this automatically picks all entity files
       synchronize: true,
+
     }),
     ProductModule
   ],
