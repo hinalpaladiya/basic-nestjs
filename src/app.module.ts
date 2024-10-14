@@ -6,12 +6,12 @@ import { ProductModule } from './product/product.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-       type: 'mysql',
-      host: process.env.DATABASE_HOST,
-      port: parseInt(process.env.DATABASE_PORT),
-      username: process.env.DATABASE_USER,
-      password: process.env.DATABASE_PASSWORD,
-      database: process.env.DATABASE_NAME,
+       type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'hinal',
+      database: 'basic-nestjs',
       // entities: [],
       entities: [__dirname + '/**/*.entity{.ts,.js}'], // this automatically picks all entity files
       synchronize: true,

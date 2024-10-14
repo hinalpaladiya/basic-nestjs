@@ -8,28 +8,29 @@ import { promises } from 'dns';
 
 @Injectable()
 export class ProductService {
-  constructor(
-    @InjectRepository(Product)
-    private productRepository: Repository<Product>
-  ) { }
-  create(product: Product): Promise<Product> {
-    return this.productRepository.save(product);
-  }
+	constructor(
+		@InjectRepository(Product)
+		private productRepository: Repository<Product>
+	) { }
+	create(createProductDto: CreateProductDto): Promise<Product> {
+		var product = this.productRepository.create(createProductDto);
+		return this.productRepository.save(product);
+	}
 
-  findAll(): Promise<Product[]> {
-    return this.productRepository.find();
-  }
+	findAll(): Promise<Product[]> {
+		return this.productRepository.find();
+	}
 
-  findOne(id: number): Promise<Product> {
-    return this.productRepository.findOneBy({ id });
-  }
+	findOne(id: number): Promise<Product> {   
+		return this.productRepository.findOneBy({ id });
+	}
 
-  async update(id: number, product: Product): Promise<Product> {
-    await this.productRepository.update(id, product);
-    return this.findOne(id);
-  }
+	async update(id: number, updateProductDto: UpdateProductDto): Promise<Product> {
+		await this.productRepository.update(id, updateProductDto);
+		return this.findOne(id);
+	}
 
-  async remove(id: number): Promise<void> {
-    await this.productRepository.delete(id);
-  }
+	async remove(id: number): Promise<void> {
+		await this.productRepository.delete(id);
+	}
 }
